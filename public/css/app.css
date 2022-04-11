@@ -1,0 +1,23 @@
+body {
+    background: #3a3a3a;
+}
+
+header {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+footer {
+    padding: 20px;
+    color: #fff;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.pagecont {
+    padding: 20px;
+    background: #fff;
+}
