@@ -45,7 +45,6 @@ function getFeed(url, callback) {
   if (!error && response.statusCode == 200)
 
   response.body = response.body.split('srp-river-answer--REWRITE_START')[0]; // Remove any international or "results with less words" bullshit
-
   var $ = cheerio.load(response.body);
 
   if(typeof $ === 'undefined') {
@@ -73,13 +72,13 @@ function getFeed(url, callback) {
         description: LI('.s-item__subtitle').text(),
         url: LI('.s-item__link').attr('href').split('?')[0],
         image: LI('img.s-item__image-img').attr('src'),
-        price: LI('.s-item__details > .s-item__detail > .s-item__price').text(),
-        shipping: LI('.s-item__details > .s-item__detail > .s-item__freeXDays').text() +
-              LI('.s-item__details > .s-item__detail > .s-item__localDelivery').text() +
-              LI('.s-item__details > .s-item__detail > .s-item__logisticsCost').text(),
-        location: LI('.s-item__details > .s-item__detail > .s-item__location').text(),
-        bidcount: LI('.s-item__details > .s-item__detail > .s-item__bidCount').text(),
-        timeleft: LI('.s-item__details > .s-item__detail > .s-item__time > .s-item__time-left').text(),
+        price: LI('.s-item__details > .s-item__detailundefined > .s-item__price').text(),
+        shipping: LI('.s-item__details > .s-item__detailundefined > .s-item__freeXDays').text() +
+              LI('.s-item__details > .s-item__detailundefined > .s-item__localDelivery').text() +
+              LI('.s-item__details > .s-item__detailundefined > .s-item__logisticsCost').text(),
+        location: LI('.s-item__details > .s-item__detailundefined > .s-item__location').text(),
+        bidcount: LI('.s-item__details > .s-item__detailundefined > .s-item__bidCount').text(),
+        timeleft: LI('.s-item__details > .s-item__detailundefined > .s-item__time > .s-item__time-left').text(),
         //watchlist: LI('.s-item__watchheart > a').attr('href'), // this url does not work as its tied to the session. Need a rover.ebay alternative
     }
 
@@ -103,7 +102,7 @@ function getFeed(url, callback) {
 // Start app
 
 app.get('/sch/i.html',function(req,res){
-    getFeed("https://www.ebay.com"+req.params.country+"/sch/i.html"+req.originalUrl.substring(req.originalUrl.indexOf('?')), function(d) {
+    getFeed("https://www.ebay.com"+"/sch/i.html"+req.originalUrl.substring(req.originalUrl.indexOf('?')), function(d) {
         res.type('application/xml')
         res.send(d);
     })
@@ -118,7 +117,7 @@ app.get('/:country/sch/i.html',function(req,res){
     })
 })
 
-app.listen(3000, function() {
+app.listen(3010, function() {
     console.log('Listening on port 3000');
 });
 
