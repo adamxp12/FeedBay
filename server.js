@@ -72,13 +72,13 @@ function getFeed(url, callback) {
         description: LI('.s-item__subtitle').text(),
         url: LI('.s-item__link').attr('href').split('?')[0],
         image: LI('img.s-item__image-img').attr('src'),
-        price: LI('.s-item__details > .s-item__detailundefined > .s-item__price').text(),
-        shipping: LI('.s-item__details > .s-item__detailundefined > .s-item__freeXDays').text() +
-              LI('.s-item__details > .s-item__detailundefined > .s-item__localDelivery').text() +
-              LI('.s-item__details > .s-item__detailundefined > .s-item__logisticsCost').text(),
-        location: LI('.s-item__details > .s-item__detailundefined > .s-item__location').text(),
-        bidcount: LI('.s-item__details > .s-item__detailundefined > .s-item__bidCount').text(),
-        timeleft: LI('.s-item__details > .s-item__detailundefined > .s-item__time > .s-item__time-left').text(),
+        price: LI('.s-item__details > .s-item__detail > .s-item__price').text(),
+        shipping: LI('.s-item__details > .s-item__detail > .s-item__freeXDays').text() +
+              LI('.s-item__details > .s-item__detail > .s-item__localDelivery').text() +
+              LI('.s-item__details > .s-item__detail > .s-item__logisticsCost').text(),
+        location: LI('.s-item__details > .s-item__detail > .s-item__location').text(),
+        bidcount: LI('.s-item__details > .s-item__detail > .s-item__bidCount').text(),
+        timeleft: LI('.s-item__details > .s-item__detail > .s-item__time > .s-item__time-left').text(),
         //watchlist: LI('.s-item__watchheart > a').attr('href'), // this url does not work as its tied to the session. Need a rover.ebay alternative
     }
 
