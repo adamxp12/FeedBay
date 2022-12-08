@@ -16,3 +16,15 @@ I myself have been using FeedBay for a while now and it has not skiped a beat gi
 I also have a hosted instance you can try out https://feedbay.net but this might not scale for thousands of users hitting it so it is recommended you host yourself 
 
 FeedBay is not endorsed by eBay. I hate the company as their developers seem to be on a one track road to making the UX terrible at every turn. Makes the RSS feeds even more desirable 
+
+# Configuration
+ Copy the .env.example to .env then edit to change the port. Default is 3000, so you can reach the server at http://localhost:3000.
+
+# Reverse proxy
+ It's recommended to use with Caddy or Nginx as a reverse proxy if you want to serve this on a https domain.
+
+ To use with Caddy, it's simply one code block:
+    feedbay.example.com {
+        reverse_proxy 127.0.0.1:7171
+    }
+Where example.com is your personal domain. Don't forget to setup the feedbay subdomain in your DNS provider or setup DNS wildcard support as needed.
