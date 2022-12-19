@@ -1,3 +1,4 @@
+require(`dotenv`).config();
 const RSS = require('rss');
 const cheerio = require('cheerio');
 const express = require('express');
@@ -6,10 +7,12 @@ var needle = require('needle');
 
 app.use(express.static('public'));
 
-
 // This function tries its best to give the same output the now defunct RSS feed provided
 // I dont have a way to make the add to watch list button or specific end times for most items because that data is not in the search page
 // The is a watch button but its session specific and will generate a 500 error on ebay if you try it on a different session.
+
+const PORT = process.env.PORT || 3000;
+
 function buildTable(obj) {
     var linktext = "Bid Now"
     if(!obj.bidcount) {
@@ -117,7 +120,7 @@ app.get('/:country/sch/i.html',function(req,res){
     })
 })
 
-app.listen(3000, function() {
-    console.log('Listening on port 3000');
+app.listen(PORT, function() {
+    console.log('Listening on port '+PORT+'...');
 });
 
