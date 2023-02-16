@@ -74,7 +74,7 @@ function getFeed(url, callback) {
         title: LI('.s-item__title').text(),
         description: LI('.s-item__subtitle').text(),
         url: LI('.s-item__link').attr('href').split('?')[0],
-        image: LI('img.s-item__image-img').attr('src'),
+        image: LI('.s-item__image-wrapper').children().first().attr('src'),
         price: LI('.s-item__details > .s-item__detail > .s-item__price').text(),
         shipping: LI('.s-item__details > .s-item__detail > .s-item__freeXDays').text() +
               LI('.s-item__details > .s-item__detail > .s-item__localDelivery').text() +
