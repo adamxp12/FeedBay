@@ -14,9 +14,9 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 3000;
 
 function buildTable(obj) {
-    var linktext = "Bid Now"
-    if(!obj.bidcount) {
-        linktext = "Buy It Now"
+    var linktext = "Buy It Now"
+    if(obj.timeleft !== "") {
+        linktext = "Bid Now"
     }
     if(obj.location) {
         obj.shipping += "<br>"+obj.location;
@@ -67,20 +67,20 @@ function getFeed(url, callback) {
   });
 
   // Loop over the results and add them to the feed
-  $('ul.srp-results > li.s-item').each(function() {
+  $('ul.srp-results > li.s-card').each(function() {
     var LI = cheerio.load(this);
     LI('.LIGHT_HIGHLIGHT').remove(); // Remove the "NEW LISTING" tag from titles because that is frankly useless info in an RSS feed
     var obj = {
-        title: LI('.s-item__title').text(),
-        description: LI('.s-item__subtitle').text(),
-        url: LI('.s-item__link').attr('href').split('?')[0],
-        image: LI('.s-item__image-wrapper').children().first().attr('src'),
-        price: LI('.s-item__price').text(),
-        shipping: LI('.s-item__freeXDays').text() +
-              LI('.s-item__localDelivery').text() +
-              LI('.s-item__logisticsCost').text(),
-        location: LI('.s-item__location').text(),
-        bidcount: LI('.s-item__bidCount').text(),
+        title: LI('.s-card__title').text(),
+        description: LI('.s-card__subtitle').text(),
+        url: LI('.su-link').attr('href').split('?')[0],
+        image: LI('.s-card__image').attr('src'),
+        price: LI('.s-card__price').text(),
+        shipping: LI('.s-card__freeXDays').text() +
+              LI('.s-card__localDelivery').text() +
+              LI('.s-card__logisticsCost').text(),
+        location: LI('.s-card__location').text(),
+        bidcount: LI('.s-card__bidCount').text(),
         timeleft: LI('.s-item__time > .s-item__time-left').text(),
         //watchlist: LI('.s-item__watchheart > a').attr('href'), // this url does not work as its tied to the session. Need a rover.ebay alternative
     }
